@@ -1,7 +1,8 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import "../styles/Lpnav.css"
+import React, { useState } from 'react'
+import { Link } from "react-router-dom"
+import {FaBars, FaTimes} from "react-icons/fa";
+import { Nav } from "react-bootstrap";
 const logout = async () => {
     
     sessionStorage.clear();
@@ -9,23 +10,37 @@ const logout = async () => {
     
     // window.location.href = '/';
 }
-const navbar = () => {
-    return (
-        <Navbar bg="light" expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">React-Dashboard</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                        <Nav.Link href="/users">Users</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-                <Nav className="justify-content-end">
+const LpNav = () => {
+
+    const [click,setClick] = useState(false);
+    const handleClick = () => setClick(!click);
+
+    const [color, setColor] = useState(false);
+    const changeColor = () => {
+        if (window.scrollY >=100){
+            setColor(true);
+        }else{
+            setColor(false);
+        }
+    };
+
+    window.addEventListener("scroll",changeColor);
+
+return (
+    <div className={color ? "header header-bg" : "header"}>
+            <Link to="/" className="logo"><h1>SKYLIGHT BOOK</h1></Link>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+        <li>
+        <Nav className="justify-content-end">
                     <Nav.Link onClick={logout}>Logout</Nav.Link>
                 </Nav>
-            </Container>
-        </Navbar>
-    );
+            </li>
+        </ul>
+        <div className="hamburger" onClick={handleClick}>
+            {click ? (<FaTimes size={20} style={{ color: "#fff"}} />) : (<FaBars size={20} style={{ color: "#fff"}} />)}
+        </div>
+    </div>
+)
 }
-export default navbar;
+
+export default LpNav

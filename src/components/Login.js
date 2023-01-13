@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -52,8 +52,11 @@ export default function Login() {
             })
     };
     return (
-        <div className='container mt-4 shadow-sm p-3 mb-5 bg-white rounded'>
+        <div>
+        <div className='container bg-transparent' >
             <Form onSubmit={Auth}>
+                <table>
+                <h3>Silahkan Login Untuk Meminjam Buku</h3>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -71,7 +74,10 @@ export default function Login() {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <p>Jika belum memiliki akun, <Link to="/Register" > Daftar </Link> </p>
+                </table>
             </Form>
         </div>
+       </div>
     )
 }

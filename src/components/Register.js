@@ -13,7 +13,7 @@ export default function Register() {
     const history = useNavigate();
     useEffect(() => {
         if (sessionStorage.getItem("access_token") !== null) {
-            history('/Login')
+            history('/Register')
         }
     }, []);
     const Register = async (e) => {
@@ -41,12 +41,20 @@ export default function Register() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    history('/Login');
-                }
+                    history('/Register');
+            }else{
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: 'Register Failed',
+                    showConfirmButton: false,
+                    timer: 1500
             })
-    };
+        }
+    })
+};
     return (
-        <div className='container mt-4 shadow-sm p-3 mb-5 bg-white rounded'>
+        <div className='container mt-1 p-3 mb-5 bg-white rounded ' >
             <Form onSubmit={Register}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Name </Form.Label>
@@ -72,5 +80,6 @@ export default function Register() {
                 </Button>
             </Form>
         </div>
+        
     )
 }

@@ -21,7 +21,7 @@ const LpNav = () => {
 
 return (
     <div className={color ? "header header-bg" : "header"}>
-            <Link to="/" className="logo"><h1>RENTAL BUKU</h1></Link>
+            <Link to="/" className="logo"><h1>SKYLIGHT BOOK</h1></Link>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li>
                 <Link to="/">Home</Link>
@@ -32,12 +32,13 @@ return (
             <li>
                 <Link to="/Contact">Contact</Link>
             </li>
-            <li>
+            {/* <li>
                 <Link to="/Login">Login</Link>
             </li>
             <li>
                 <Link to="/Register">Register</Link>
-            </li>
+            </li> */}
+           
         </ul>
         <div className="hamburger" onClick={handleClick}>
             {click ? (<FaTimes size={20} style={{ color: "#fff"}} />) : (<FaBars size={20} style={{ color: "#fff"}} />)}
